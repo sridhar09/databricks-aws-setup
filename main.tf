@@ -3,8 +3,8 @@ module "vpc_setup" {
   providers = {
     databricks.mws = databricks.mws
   }
-  aws_region = var.aws_region
-  cidr_block = var.vpc_cidr_block
+  aws_region            = var.aws_region
+  cidr_block            = var.vpc_cidr_block
   databricks_account_id = var.databricks_account_id
   default_tags = {
     costcenter = var.costcenter
@@ -13,18 +13,18 @@ module "vpc_setup" {
 }
 
 module "workspace_setup" {
-  source = "workspace_setup"
+  source   = "workspace_setup"
   for_each = keys(yamldecode(abspath("./databricks_workspace_assignments.yaml")))
   providers = {
     databricks.mws = databricks.mws
   }
-  aws_region = var.aws_region
+  aws_region            = var.aws_region
   databricks_account_id = var.databricks_account_id
   databricks_network_id = module.vpc_setup.databricks_network_id
   default_tags = {
     costcenter = var.costcenter
   }
-  prefix = var.resource_prefix
+  prefix         = var.resource_prefix
   workspace_name = each.value
 }
 

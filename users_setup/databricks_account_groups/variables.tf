@@ -1,6 +1,6 @@
-variable "group_name"{
+variable "group_name" {
   description = "Group name to be created"
-  type = string
+  type        = string
 }
 
 variable "group_memberships" {
