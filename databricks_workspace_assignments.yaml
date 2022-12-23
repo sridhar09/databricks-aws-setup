@@ -1,0 +1,16 @@
+#The Group Assignments YAML that needs to be passed as input is used to define the workspaces and which groups should be assigned.
+#  Here's a sample YAML file.
+#
+
+#     group_config":
+#      "workspace1":
+#        - "admin"
+#        - "trainer"
+#        - "student"
+#      "trainer_only_workspace":
+#        - "admin"
+#        - "trainer"
+#
+#  1. Each workspace has a list of groups which are assigned to that workspace
+#  2. A single group can be assigned to more than 1 workspace
+
