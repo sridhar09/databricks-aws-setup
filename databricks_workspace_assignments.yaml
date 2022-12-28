@@ -2,7 +2,7 @@
 #  Here's a sample YAML file.
 #
 
-#     group_config":
+#     workspace_assignments_config":
 #      "workspace1":
 #        - "admin"
 #        - "trainer"

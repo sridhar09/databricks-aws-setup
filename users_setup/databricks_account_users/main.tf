@@ -5,7 +5,7 @@ locals {
 }
 
 resource "databricks_user" "unity_users" {
-  provider  = databricks.account
+  provider  = databricks.mws
   for_each  = local.users
   user_name = each.key
 

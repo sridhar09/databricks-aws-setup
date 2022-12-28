@@ -11,11 +11,11 @@ locals {
 }
 
 data "databricks_mws_workspaces" "all" {
-  provider = databricks.account
+  provider = databricks.mws
 }
 
 resource "databricks_mws_permission_assignment" "assign_team_workspace" {
-  provider = databricks.account
+  provider = databricks.mws
   for_each = { for assignment in local.workspaces : "${assignment.workspace}-${assignment.group}" => assignment }
 
   workspace_id = lookup(data.databricks_mws_workspaces.all.ids, each.value.workspace)

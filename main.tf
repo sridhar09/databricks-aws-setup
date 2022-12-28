@@ -13,8 +13,8 @@ module "vpc_setup" {
 }
 
 module "workspace_setup" {
-  source   = "workspace_setup"
-  for_each = keys(yamldecode(abspath("./databricks_workspace_assignments.yaml")))
+  source   = "./workspace_setup"
+  for_each = toset(keys(yamldecode(file(abspath("./databricks_workspace_assignments.yaml")))["workspace_assignments_config"]))
   providers = {
     databricks.mws = databricks.mws
   }
@@ -29,15 +29,15 @@ module "workspace_setup" {
 }
 
 module "databricks_account_users" {
-  source = "users_setup/databricks_account_users"
+  source = "./users_setup/databricks_account_users"
   providers = {
-    databricks.account = databricks.mws
+    databricks.mws = databricks.mws
   }
   user_yaml_filepath = abspath("./databricks_users.yaml")
 }
 
 module "databricks_group_assignments" {
-  source = "users_setup/databricks_group_assignments"
+  source = "./users_setup/databricks_group_assignments"
   providers = {
     databricks.mws = databricks.mws
   }
